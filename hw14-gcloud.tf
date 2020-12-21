@@ -4,7 +4,7 @@ provider "google" {
   zone        = "us-central1-c"
 }
 
-resource "google_compute_instance" "vm_instance" {
+resource "google_compute_instance" "build" {
   name         = "build"
   machine_type = "f1-micro"
   boot_disk {
@@ -18,13 +18,13 @@ resource "google_compute_instance" "vm_instance" {
     }
   }
 }
-resource "google_compute_network" "vpc_network" {
+resource "google_compute_network" "build_vpc" {
   name                    = "default"
   auto_create_subnetworks = "true"
 }
 
 
-resource "google_compute_instance" "vm_instance" {
+resource "google_compute_instance" "deploy" {
   name         = "deploy"
   machine_type = "f1-micro"
   boot_disk {
@@ -38,7 +38,7 @@ resource "google_compute_instance" "vm_instance" {
     }
   }
 }
-resource "google_compute_network" "vpc_network" {
+resource "google_compute_network" "deploy_vpc" {
   name                    = "default"
   auto_create_subnetworks = "true"
 }
