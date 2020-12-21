@@ -18,27 +18,7 @@ resource "google_compute_instance" "build" {
     }
   }
 }
-resource "google_compute_network" "build_vpc" {
-  name                    = "default"
-  auto_create_subnetworks = "true"
-}
-
-
-resource "google_compute_instance" "deploy" {
-  name         = "deploy"
-  machine_type = "f1-micro"
-  boot_disk {
-    initialize_params {
-      image = "debian-cloud/debian-9"
-    }
-  }
-  network_interface {
-    network = google_compute_network.vpc_network.self_link
-    access_config {
-    }
-  }
-}
-resource "google_compute_network" "deploy_vpc" {
+resource "google_compute_network" "vpc_network" {
   name                    = "default"
   auto_create_subnetworks = "true"
 }
